@@ -1,52 +1,115 @@
-var options = {
-    series: [44, 55, 67, 83],
+////////
+$.getJSON("data.json", function (json) {
+  console.log("success"); // this will show the info it in firebug console
+  ////////
+  var steps = [6];
+  for (var i = 0; i <= 6; i++) {
+    steps[i] = json.activityLog[i].steps * 100 / json.goals.steps;
+  }
+  var calories = [6];
+  for (var i = 0; i <= 6; i++) {
+    calories[i] = json.activityLog[i].calories * 100 / json.goals.caloriesOut;
+  }
+  var distance = [6];
+  for (var i = 0; i <= 6; i++) {
+    distance[i] = json.activityLog[i].distance * 100 / json.goals.distance;
+  }
+
+
+
+  var logId = "Login Id: " + json.activityLog[6].logId;
+  document.getElementById("log").innerHTML = logId;
+
+  var actId = "Activity Id: " + json.activityLog[6].activityId;
+  document.getElementById("act").innerHTML = actId;
+
+
+
+  var options = {
+    series: [steps[6].toFixed(1), calories[6].toFixed(1), distance[6].toFixed(1)],
     chart: {
-        height: 350,
-        type: 'radialBar',
+      height: 390,
+      type: 'radialBar',
     },
     plotOptions: {
-        radialBar: {
-            dataLabels: {
-                name: {
-                    fontSize: '22px',
-                },
-                value: {
-                    fontSize: '16px',
-                },
-                total: {
-                    show: true,
-                    label: 'Total',
-                    formatter: function (w) {
-                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                        return 249
-                    }
-                }
-            }
+      radialBar: {
+        offsetY: 0,
+        startAngle: 0,
+        endAngle: 270,
+        hollow: {
+          margin: 5,
+          size: '30%',
+          background: 'transparent',
+          image: undefined,
+        },
+        dataLabels: {
+          name: {
+            show: false,
+          },
+          value: {
+            show: false,
+          }
         }
-    },
-    labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
-};
-
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
-
-
-
-
-
-var options = {
-    series: [{
-        name: "Session Duration",
-        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10]
-      },
-      {
-        name: "Page Views",
-        data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]
-      },
-      {
-        name: 'Total Visits',
-        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]
       }
+    },
+    colors: ['#1ab7ea', '#0084ff', '#39539E'],
+    labels: ['steps', 'calories', 'distance'],
+    legend: {
+      show: true,
+      floating: true,
+      fontSize: '16px',
+      position: 'left',
+      offsetX: 130,
+      offsetY: 15,
+      labels: {
+        useSeriesColors: true,
+      },
+      markers: {
+        size: 0
+      },
+      formatter: function (seriesName, opts) {
+        return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%"
+      },
+      itemMargin: {
+        horizontal: 3,
+      }
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        legend: {
+          show: false
+        }
+      }
+    }]
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  chart.render();
+
+
+
+
+
+
+
+
+  var options = {
+    series: [{
+      name: "steps",
+      data: [steps[0].toFixed(1), steps[1].toFixed(1),steps[2].toFixed(1), steps[3].toFixed(1), 
+                      steps[4].toFixed(1),steps[5].toFixed(1), steps[6].toFixed(1) ]
+    },
+    {
+      name: "calories",
+      data: [calories[0].toFixed(1),calories[1].toFixed(1),calories[2].toFixed(1),calories[3].toFixed(1), 
+                      calories[4].toFixed(1),calories[5].toFixed(1),calories[6].toFixed(1)]
+    },
+    {
+      name: 'distance',
+      data: [distance[0].toFixed(1),distance[1].toFixed(1),distance[2].toFixed(1),distance[3].toFixed(1),
+                      distance[4].toFixed(1), distance[5].toFixed(1),distance[6].toFixed(1)]
+    }
     ],
     chart: {
       height: 350,
@@ -68,13 +131,13 @@ var options = {
       align: 'left'
     },
     legend: {
-      tooltipHoverFormatter: function(val, opts) {
+      tooltipHoverFormatter: function (val, opts) {
         return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
       }
     },
     markers: {
       size: 0,
-    
+
       hover: {
         sizeOffset: 6
       }
@@ -88,13 +151,13 @@ var options = {
       y: [{
         title: {
           formatter: function (val) {
-            return val + " (mins)"
+            return val;
           }
         }
       }, {
         title: {
           formatter: function (val) {
-            return val + " per session"
+            return val;
           }
         }
       }, {
@@ -117,8 +180,10 @@ var options = {
 
   var options = {
     series: [{
-      name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100]
+      name: 'duration',
+      data: [json.activityLog[0].sleep, json.activityLog[1].sleep, json.activityLog[2].sleep, 
+      json.activityLog[3].sleep, json.activityLog[4].sleep, json.activityLog[5].sleep,
+      json.activityLog[6].sleep]
     }],
     chart: {
       height: 350,
@@ -143,3 +208,5 @@ var options = {
 
   var chart = new ApexCharts(document.querySelector("#chart2"), options);
   chart.render();
+
+});
