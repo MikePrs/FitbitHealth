@@ -1,0 +1,87 @@
+{
+  "sleep": [
+    {
+      "dateOfSleep": "2020-01-03",
+      "duration": 6000000,
+      "efficiency": 100,
+      "endTime": "2020-01-03T18:00:00.000",
+      "infoCode": 0,
+      "isMainSleep": false,
+      "levels": {
+        "data": [
+          {
+            "dateTime": "2020-01-03T16:20:00.000",
+            "level": "asleep",
+            "seconds": 6000
+          }
+        ],
+        "summary": {
+          "asleep": {
+            "count": 0,
+            "minutes": 100
+          },
+          "awake": {
+            "count": 0,
+            "minutes": 0
+          },
+          "restless": {
+            "count": 0,
+            "minutes": 0
+          }
+        }
+      },
+      "logId": 25474944952,
+      "minutesAfterWakeup": 0,
+      "minutesAsleep": 100,
+      "minutesAwake": 0,
+      "minutesToFallAsleep": 0,
+      "startTime": "2020-01-03T16:20:00.000",
+      "timeInBed": 100,
+      "type": "classic"
+    },
+    {
+      "dateOfSleep": "2020-01-03",
+      "duration": 9000000,
+      "efficiency": 100,
+      "endTime": "2020-01-03T02:50:00.000",
+      "infoCode": 0,
+      "isMainSleep": true,
+      "levels": {
+        "data": [
+          {
+            "dateTime": "2020-01-03T00:20:00.000",
+            "level": "asleep",
+            "seconds": 9000
+          }
+        ],
+        "summary": {
+          "asleep": {
+            "count": 0,
+            "minutes": 150
+          },
+          "awake": {
+            "count": 0,
+            "minutes": 0
+          },
+          "restless": {
+            "count": 0,
+            "minutes": 0
+          }
+        }
+      },
+      "logId": 25476383770,
+      "minutesAfterWakeup": 0,
+      "minutesAsleep": 150,
+      "minutesAwake": 0,
+      "minutesToFallAsleep": 0,
+      "startTime": "2020-01-03T00:20:00.000",
+      "timeInBed": 150,
+      "type": "classic"
+    }
+  ],
+  "summary": {
+    "totalMinutesAsleep": 250,
+    "totalSleepRecords": 2,
+    "totalTimeInBed": 250
+  }
+}
